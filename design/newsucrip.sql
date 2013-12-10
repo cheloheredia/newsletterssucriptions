@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2013 at 02:29 PM
+-- Generation Time: Dec 10, 2013 at 07:34 PM
 -- Server version: 5.6.12-log
 -- PHP Version: 5.4.16
 
@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `prospecto` (
   `papellido` char(50) DEFAULT NULL,
   `pemail` char(50) DEFAULT NULL,
   `pciudad` int(11) DEFAULT NULL,
-  `ptipo` int(11) DEFAULT NULL,
   PRIMARY KEY (`pn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -126,19 +125,20 @@ CREATE TABLE IF NOT EXISTS `suscripcion` (
   `sn` int(11) NOT NULL AUTO_INCREMENT,
   `srevista` int(11) DEFAULT NULL,
   `sprospecto` int(11) DEFAULT NULL,
+  `stipo` int(11) DEFAULT NULL,
   PRIMARY KEY (`sn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tprospecto`
+-- Table structure for table `tsuscripcion`
 --
 
-CREATE TABLE IF NOT EXISTS `tprospecto` (
-  `tpn` int(11) NOT NULL AUTO_INCREMENT,
-  `tptipo` char(50) DEFAULT NULL,
-  PRIMARY KEY (`tpn`)
+CREATE TABLE IF NOT EXISTS `tsuscripcion` (
+  `tsn` int(11) NOT NULL AUTO_INCREMENT,
+  `tstipo` char(50) DEFAULT NULL,
+  PRIMARY KEY (`tsn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
