@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://127.0.0.1:24/prospecto/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="prospecto" targetNamespace="http://127.0.0.1:24/prospecto/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://127.0.0.1:24/prospecto/">
+      <xsd:element name="registrarparaportadasentradas"
+      	type="tns:registrarparaportadasentradas">
+
+      </xsd:element>
+      <xsd:element name="registrarparaportadassalidas"
+      	type="tns:registrarparaportadassalidas">
+
+      </xsd:element>
+
+      <xsd:complexType name="registrarparaportadasentradas">
+      	<xsd:attribute name="nombre" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="apellido" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="email" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="pais" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="ciudad" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="revista" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    
+      <xsd:complexType name="registrarparaportadassalidas">
+      	<xsd:attribute name="error" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="registrarparaportadasRequest">
+    <wsdl:part element="tns:registrarparaportadasentradas" name="registrarparaportadasentradas"/>
+  </wsdl:message>
+  <wsdl:message name="registrarparaportadasResponse">
+    <wsdl:part element="tns:registrarparaportadassalidas" name="registrarparaportadassalidas"/>
+  </wsdl:message>
+  <wsdl:portType name="prospecto">
+    <wsdl:operation name="registrarparaportadas">
+      <wsdl:input message="tns:registrarparaportadasRequest"/>
+      <wsdl:output message="tns:registrarparaportadasResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="prospectoSOAP" type="tns:prospecto">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="registrarparaportadas">
+
+  		<soap:operation
+  			soapAction="http://127.0.0.1:24/prospecto/registrarparaportadas" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="prospecto">
+    <wsdl:port binding="tns:prospectoSOAP" name="prospectoSOAP">
+      <soap:address location="http://127.0.0.1:24/prospecto/server.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

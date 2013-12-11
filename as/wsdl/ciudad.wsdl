@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://127.0.0.1:24/ciudad/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ciudad" targetNamespace="http://127.0.0.1:24/ciudad/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://127.0.0.1:24/ciudad/">
+      <xsd:element name="buscarciudadesentradas"
+      	type="tns:buscarciudadesentradas">
+
+      </xsd:element>
+      <xsd:element name="buscarciudadessalidas"
+      	type="tns:buscarciudadessalidas">
+
+      </xsd:element>
+
+      <xsd:complexType name="buscarciudadesentradas">
+      	<xsd:attribute name="pais" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="ciudad" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    
+      <xsd:complexType name="buscarciudadessalidas">
+      	<xsd:sequence>
+      		<xsd:element name="ciudades" type="tns:ciudades" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      	<xsd:attribute name="error" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    
+      <xsd:complexType name="ciudades">
+      	<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="ciudad" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="buscarciudadesRequest">
+    <wsdl:part element="tns:buscarciudadesentradas" name="buscarcuidadasentradas"/>
+  </wsdl:message>
+  <wsdl:message name="buscarciudadesResponse">
+    <wsdl:part element="tns:buscarciudadessalidas" name="buscarciudadessalidas"/>
+  </wsdl:message>
+  <wsdl:portType name="ciudad">
+    <wsdl:operation name="buscarciudades">
+      <wsdl:input message="tns:buscarciudadesRequest"/>
+      <wsdl:output message="tns:buscarciudadesResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ciudadSOAP" type="tns:ciudad">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="buscarciudades">
+
+  		<soap:operation
+  			soapAction="http://127.0.0.1:24/ciudad/buscarciudades" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ciudad">
+    <wsdl:port binding="tns:ciudadSOAP" name="ciudadSOAP">
+      <soap:address location="http://127.0.0.1:24/ciudad/server.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

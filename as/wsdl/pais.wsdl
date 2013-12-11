@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://127.0.0.1:24/pais/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="pais" targetNamespace="http://127.0.0.1:24/pais/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://127.0.0.1:24/pais/">
+      <xsd:element name="buscarpaisasentradas"
+      	type="tns:buscarpaisasentradas">
+
+      </xsd:element>
+      <xsd:element name="buscarpaisassalidas"
+      	type="tns:buscarpaisassalidas">
+
+      </xsd:element>
+
+      <xsd:complexType name="buscarpaisasentradas">
+      	<xsd:attribute name="pais" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    
+      <xsd:complexType name="buscarpaisassalidas">
+      	<xsd:sequence>
+      		<xsd:element name="paises" type="tns:paises" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      	<xsd:attribute name="error" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    
+      <xsd:complexType name="paises">
+      	<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="pais" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="buscarpaisasRequest">
+    <wsdl:part element="tns:buscarpaisasentradas" name="buscarpaisasentradas"/>
+  </wsdl:message>
+  <wsdl:message name="buscarpaisasResponse">
+    <wsdl:part element="tns:buscarpaisassalidas" name="buscarpaisassalidas"/>
+  </wsdl:message>
+  <wsdl:portType name="pais">
+    <wsdl:operation name="buscarpaisas">
+      <wsdl:input message="tns:buscarpaisasRequest"/>
+      <wsdl:output message="tns:buscarpaisasResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="paisSOAP" type="tns:pais">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="buscarpaisas">
+
+  		<soap:operation
+  			soapAction="http://127.0.0.1:24/pais/buscarpaisas" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="pais">
+    <wsdl:port binding="tns:paisSOAP" name="paisSOAP">
+      <soap:address location="http://127.0.0.1:24/pais/server.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

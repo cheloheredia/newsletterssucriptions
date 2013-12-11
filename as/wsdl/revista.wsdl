@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://127.0.0.1:24/revista/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="revista" targetNamespace="http://127.0.0.1:24/revista/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://127.0.0.1:24/revista/">
+      <xsd:element name="buscarrevistasentradas"
+      	type="tns:buscarrevistasentradas">
+
+      </xsd:element>
+      <xsd:element name="buscarrevistassalidas"
+      	type="tns:buscarrevistassalidas">
+
+      </xsd:element>
+
+      <xsd:complexType name="buscarrevistasentradas">
+      	<xsd:attribute name="revista" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    
+      <xsd:complexType name="buscarrevistassalidas">
+      	<xsd:sequence>
+      		<xsd:element name="revistas" type="tns:revistas" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      	</xsd:sequence>
+      	<xsd:attribute name="error" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    
+      <xsd:complexType name="revistas">
+      	<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
+      	<xsd:attribute name="revista" type="xsd:string"></xsd:attribute>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="buscarrevistasRequest">
+    <wsdl:part element="tns:buscarrevistasentradas" name="buscarrevistasentradas"/>
+  </wsdl:message>
+  <wsdl:message name="buscarrevistasResponse">
+    <wsdl:part element="tns:buscarrevistassalidas" name="buscarrevistassalidas"/>
+  </wsdl:message>
+  <wsdl:portType name="revista">
+    <wsdl:operation name="buscarrevistas">
+      <wsdl:input message="tns:buscarrevistasRequest"/>
+      <wsdl:output message="tns:buscarrevistasResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="revistaSOAP" type="tns:revista">
+
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="buscarrevistas">
+
+  		<soap:operation
+  			soapAction="http://127.0.0.1:24/revista/buscarrevistas" />
+  		<wsdl:input>
+
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="revista">
+    <wsdl:port binding="tns:revistaSOAP" name="revistaSOAP">
+      <soap:address location="http://127.0.0.1:24/revista/server.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
