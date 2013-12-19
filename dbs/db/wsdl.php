@@ -35,7 +35,7 @@ class filas {
 
 }
 
-class buscarrevistautosuggestentradas {
+class buscarrevistaentradas {
 
     /**
      * @var string
@@ -44,7 +44,7 @@ class buscarrevistautosuggestentradas {
 
 }
 
-class buscarpaisautosuggestentradas {
+class buscarpais {
 
     /**
      * @var string
@@ -53,7 +53,7 @@ class buscarpaisautosuggestentradas {
 
 }
 
-class buscarcuidadautosuggestentradas {
+class buscarcuidadentradas {
 
     /**
      * @var int
@@ -88,6 +88,11 @@ class registrarprospectoentradas {
      * @var string
      */
     public $email;
+
+    /**
+     * @var datetime
+     */
+    public $fecha;
 
 }
 
@@ -167,6 +172,31 @@ class buscarsuscripcionentradas {
 
 }
 
+class insertarsuscripcionentradas {
+
+    /**
+     * @var int
+     */
+    public $prospecto;
+
+    /**
+     * @var int
+     */
+    public $revista;
+
+    /**
+     * @var int
+     */
+    public $tipo;
+
+    /**
+     * @var datetime
+     */
+    public $fecha;
+
+
+}
+
 /**
 * @var array
 */
@@ -174,13 +204,14 @@ $classMap = array(
 	'res' => 'res',
 	'resquery' => 'resquery',
 	'filas' => 'filas',
-    'buscarrevistautosuggestentradas' => 'buscarrevistautosuggestentradas',
-    'buscarpaisautosuggestentradas' => 'buscarpaisautosuggestentradas',
-    'buscarcuidadautosuggestentradas' => 'buscarcuidadautosuggestentradas',
+    'buscarrevistaentradas' => 'buscarrevistaentradas',
+    'buscarpais' => 'buscarpais',
+    'buscarcuidadentradas' => 'buscarcuidadentradas',
     'registrarprospectoentradas' => 'registrarprospectoentradas',
     'buscarprospectoentradas' => 'buscarprospectoentradas',
     'actualizarprospectoentradas' => 'actualizarprospectoentradas',
     'buscartsuscripcionentradas' => 'buscartsuscripcionentradas',
-    'buscarsuscripcionentradas' => 'buscarsuscripcionentradas'
+    'buscarsuscripcionentradas' => 'buscarsuscripcionentradas',
+    'insertarsuscripcionentradas' => 'insertarsuscripcionentradas'
 );
 

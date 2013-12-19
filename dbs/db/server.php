@@ -77,41 +77,10 @@ class db {
 	* @return int resquery->error que es 0 cuando no existe un error
 	*		  matriz resquery->matriz que contiene el resultado de la consulta
 	*/
-	public function buscarrevistautosuggest($input) {
+	public function buscarrevista($input) {
 		$this->conexion();
 		$response = $this->mostrar("select a.rn, a. rrevista from revista a where a.rrevista like '".
 		                           $input->revista."%' limit 10");
-		$this->desconexion();
-		return $response;
-	}
-
-	/**
-	* Esta funcion busca paises definidas en la tabla pais.
-	*
-	* @param string $input->pais el pais que se desea buscar
-	* @return int resquery->error que es 0 cuando no existe un error
-	*		  matriz resquery->matriz que contiene el resultado de la consulta
-	*/
-	public function buscarpaisautosuggest($input) {
-		$this->conexion();
-		$response = $this->mostrar("select a.pan, a.papais from pais a where a.papais like '".$input->pais.
-		                           "%' limit 10");
-		$this->desconexion();
-		return $response;
-	}
-
-	/**
-	* Esta funcion busca cuidades definidas en la tabla cuidad.
-	*
-	* @param string $input->cuidad la cuidad que se desea buscar
-	* @param int $input->pais el pais del cual es la cuidad que se desea buscar
-	* @return int resquery->error que es 0 cuando no existe un error
-	*		  matriz resquery->matriz que contiene el resultado de la consulta
-	*/
-	public function buscarcuidadautosuggest($input) {
-		$this->conexion();
-		$response = $this->mostrar("select a.cn, a.ccuidad, a.cpais from cuidad a where a.ccuidad like '".
-		                           $input->cuidad."%' and a.cpais = ".$input->pais." limit 10");
 		$this->desconexion();
 		return $response;
 	}
@@ -125,7 +94,8 @@ class db {
 	*/
 	public function buscarpais($input) {
 		$this->conexion();
-		$response = $this->mostrar("select a.pan, a.papais from pais a where a.papais = '".$input->pais."'");
+		$response = $this->mostrar("select a.pan, a.papais from pais a where a.papais like '".$input->pais.
+		                           "%' limit 10");
 		$this->desconexion();
 		return $response;
 	}
@@ -140,23 +110,8 @@ class db {
 	*/
 	public function buscarcuidad($input) {
 		$this->conexion();
-		$response = $this->mostrar("select a.cn, a.ccuidad, a.cpais from cuidad a where a.ccuidad = '".
-		                           $input->cuidad."' and a.cpais = ".$input->pais);
-		$this->desconexion();
-		return $response;
-	}
-
-	/**
-	* Esta funcion busca una revista definida en la tabla revista.
-	*
-	* @param string $input->revista la revista que se desea buscar
-	* @return int resquery->error que es 0 cuando no existe un error
-	*		  matriz resquery->matriz que contiene el resultado de la consulta
-	*/
-	public function buscarrevista($input) {
-		$this->conexion();
-		$response = $this->mostrar("select a.rn, a. rrevista from revista a where a.rrevista = '".
-		                           $input->revista."'");
+		$response = $this->mostrar("select a.cn, a.ccuidad, a.cpais from cuidad a where a.ccuidad like '".
+		                           $input->cuidad."%' and a.cpais = ".$input->pais." limit 10");
 		$this->desconexion();
 		return $response;
 	}
@@ -186,6 +141,7 @@ class db {
 	* @param string $input->apellido el apellido del prospecto que se desea insertar
 	* @param string $input->email el email del prospecto que se desea insertar
 	* @param int $input->cuidad la ciudad del prospecto que se desea insertar
+	* @param datetime $input->fecha fecha de suscripcion al sistema del prospecto que se desea insertar
 	* @return int res->res que es 0 cuando no existe un error
 	*
 	*/
@@ -193,7 +149,7 @@ class db {
 		$this->conexion();
 		$response = new res();
 		if ($this->ejecutarquery("insert into prospecto values('','".$input->nombre."','".$input->apellido."','".
-		    $input->email."',".$input->cuidad.")")) {
+		    $input->email."',".$input->cuidad.", '".$input->fecha."')")) {
 			$response->res = 0;
 		} else {
 			$response->res = 1;
@@ -264,6 +220,7 @@ class db {
 	* @param int $input->prospecto prospecto de la suscripcion que se desea insertar
 	* @param int $input->revista revista de la suscripcion que se desea insertar
 	* @param int $input->tipo tipo de la suscripcion que se desea insertar
+	* @param int $input->fecha fecha de suscripocion que se desea insertar
 	* @return int res->res que es 0 cuando no existe un error
 	*
 	*/
@@ -271,7 +228,7 @@ class db {
 		$this->conexion();
 		$response = new res();
 		if ($this->ejecutarquery("insert into suscripcion values('',".$input->revista.",".$input->prospecto.",".
-		    $input->tipo.")")) {
+		    $input->tipo.", '".$input->fecha."')")) {
 			$response->res = 0;
 		} else {
 			$response->res = 1;
