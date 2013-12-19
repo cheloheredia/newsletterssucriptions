@@ -36,6 +36,6 @@ class buscarciudadessalidas {
  */
 $classMap = array(
 	'buscarciudadesentradas' => 'buscarciudadesentradas',
-	'buscarciudadessalidas' => 'buscarciudadessalidas',
+	'buscarciudadessalidas' => 'buscarciudadessalidas'
 );
 

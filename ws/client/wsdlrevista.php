@@ -15,7 +15,7 @@ class buscarrevistasentradas {
 class buscarrevistassalidas {
 
     /**
-     * @var array of revistas
+     * @var array of string
      */
     public $revistas;
 
@@ -26,26 +26,11 @@ class buscarrevistassalidas {
 
 }
 
-class revistas {
-
-    /**
-     * @var string
-     */
-    public $id;
-
-    /**
-     * @var string
-     */
-    public $revista;
-
-}
-
 /**
  * @var array
  */
 $GLOBALS['classMaprevista'] = array(
 	'buscarrevistasentradas' => 'buscarrevistasentradas',
-	'buscarrevistassalidas' => 'buscarrevistassalidas',
-    'revistas' => 'revistas'
+    'buscarrevistassalidas' => 'buscarrevistassalidas'
 );
 

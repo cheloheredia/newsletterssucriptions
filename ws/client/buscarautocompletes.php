@@ -28,11 +28,9 @@ switch ($opt) {
                                         'classmap'=>$GLOBALS['classMappais']));
         $respuesta = $cliente->buscarpaisas(array('pais' => $criterio));
         if ($respuesta->error == 'OK') {
-            for ($i = 0; $i < sizeof($respuesta->paises); $i++) { 
-                $items[$respuesta->paises[$i]->pais] = $respuesta->paises[$i]->id;
-            }
+            $items = $respuesta->paises;
         } else {
-            $items[$respuesta->error] = 0;
+            $items[0] = $respuesta->error;
         }
         break;
     case 'ciudad':
@@ -44,11 +42,9 @@ switch ($opt) {
                                         'classmap'=>$GLOBALS['classMapciudad']));
         $respuesta = $cliente->buscarciudades(array('pais' => $_GET['pais'], 'ciudad' => $criterio));
         if ($respuesta->error == 'OK') {
-            for ($i = 0; $i < sizeof($respuesta->ciudades); $i++) { 
-                $items[$respuesta->ciudades[$i]->ciudad] = $respuesta->ciudades[$i]->id;
-            }
+            $items = $respuesta->ciudades;
         } else {
-            $items[$respuesta->error] = 0;
+            $items[0] = $respuesta->error;
         }
         break;
     case 'revista':
@@ -60,18 +56,16 @@ switch ($opt) {
                                         'classmap'=>$GLOBALS['classMaprevista']));
         $respuesta = $cliente->buscarrevistas(array('revista' => $criterio));
         if ($respuesta->error == 'OK') {
-            for ($i = 0; $i < sizeof($respuesta->revistas); $i++) { 
-                $items[$respuesta->revistas[$i]->revista] = $respuesta->revistas[$i]->id;
-            }
+            $items = $respuesta->revistas;
         } else {
-            $items[$respuesta->error] = 0;
+            $items[0] = $respuesta->error;
         }
         break;
     default:
         break;
 }
 $contador = 0;
-foreach ($items as $item => $id) 
+foreach ($items as $id => $item) 
 {
 	if ($contador++ > 0) print ", ";
 	print "{ \"label\" : \"$item\", \"value\" : { \"opt\" : \"$opt\", \"id\" : $id } }";

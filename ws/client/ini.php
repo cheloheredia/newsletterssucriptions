@@ -7,7 +7,7 @@
 /**
  * @var string
  */
-$asdir = 'http://127.0.0.1:24';
+$asdir = 'http://127.0.0.1:18';
 
 /**
  * @var string
