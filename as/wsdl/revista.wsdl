@@ -17,15 +17,11 @@
     
       <xsd:complexType name="buscarrevistassalidas">
       	<xsd:sequence>
-      		<xsd:element name="revistas" type="tns:revistas" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		<xsd:element name="revistas" type="xsd:string" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       	</xsd:sequence>
       	<xsd:attribute name="error" type="xsd:string"></xsd:attribute>
       </xsd:complexType>
     
-      <xsd:complexType name="revistas">
-      	<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
-      	<xsd:attribute name="revista" type="xsd:string"></xsd:attribute>
-      </xsd:complexType>
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="buscarrevistasRequest">
@@ -60,7 +56,7 @@
   </wsdl:binding>
   <wsdl:service name="revista">
     <wsdl:port binding="tns:revistaSOAP" name="revistaSOAP">
-      <soap:address location="http://127.0.0.1:24/revista/server.php"/>
+      <soap:address location="http://127.0.0.1:18/revista/server.php"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

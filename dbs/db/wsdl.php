@@ -194,7 +194,6 @@ class insertarsuscripcionentradas {
      */
     public $fecha;
 
-
 }
 
 /**

@@ -7,10 +7,10 @@
 /**
  * @var string
  */
-$GLOBALS['dbsdir'] = 'http://127.0.0.1:26';
+$GLOBALS['dbsdir'] = 'http://127.0.0.1:24';
 
 /**
  * @var string
  */
-$asdir = 'http://127.0.0.1:24';
+$asdir = 'http://127.0.0.1:18';
 

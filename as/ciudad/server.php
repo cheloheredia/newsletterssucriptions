@@ -37,15 +37,14 @@ class ciudad {
 		$resdbs = $this->clientdbs->buscarpais(array('pais'=> $input->pais));
 		if ($resdbs->error == 0) {
 			$idpais = $resdbs->matriz[0]->columnas[0];
-			$resdbs = $this->clientdbs->buscarcuidadautosuggest(array('pais'=> $idpais, 'cuidad'=> $input->ciudad));
+			$resdbs = $this->clientdbs->buscarcuidad(array('pais'=> $idpais, 'cuidad'=> $input->ciudad));
 			if ($resdbs->error == 0) {
 				$res->error = 'OK';
-				for ($i = 0; $i < sizeof($resdbs->matriz); $i++) { 
-					$res->ciudades[$i]->id = $resdbs->matriz[$i]->columnas[0];
-					$res->ciudades[$i]->ciudad = $resdbs->matriz[$i]->columnas[1];
+				for ($i = 0; $i < sizeof($resdbs->matriz); $i++) {
+					$res->ciudades[$i] = $resdbs->matriz[$i]->columnas[1];
 				}
 			} else {
-				$res->error = 'Hubo un error al mostrar las ciudades, favor vuelva a intentarlo';
+				$res->error = 'No existen coincidencias';
 			}	
 		} else {
 			$res->error = 'El pais ingresado no existe';

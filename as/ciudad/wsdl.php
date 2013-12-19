@@ -20,7 +20,7 @@ class buscarciudadesentradas {
 class buscarciudadessalidas {
 
     /**
-     * @var array of ciudades
+     * @var array of string
      */
     public $ciudades;
 
@@ -31,26 +31,11 @@ class buscarciudadessalidas {
 
 }
 
-class ciudades {
-
-    /**
-     * @var string
-     */
-    public $id;
-
-    /**
-     * @var string
-     */
-    public $ciudad;
-
-}
-
 /**
  * @var array
  */
 $classMap = array(
 	'buscarciudadesentradas' => 'buscarciudadesentradas',
 	'buscarciudadessalidas' => 'buscarciudadessalidas',
-    'ciudades' => 'ciudades'
 );
 

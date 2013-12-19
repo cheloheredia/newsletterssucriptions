@@ -33,15 +33,14 @@ class revista {
 	*/
 	public function buscarrevistas($input) {
 		$res = new buscarrevistassalidas();
-		$resdbs = $this->clientdbs->buscarrevistautosuggest(array('revista'=> $input->revista));
+		$resdbs = $this->clientdbs->buscarrevista(array('revista'=> $input->revista));
 		if ($resdbs->error == 0) {
 			$res->error = 'OK';
 			for ($i = 0; $i < sizeof($resdbs->matriz); $i++) { 
-				$res->revistas[$i]->id = $resdbs->matriz[$i]->columnas[0];
-				$res->revistas[$i]->revista = $resdbs->matriz[$i]->columnas[1];
+				$res->revistas[$i] = $resdbs->matriz[$i]->columnas[1];
 			}
 		} else {
-			$res->error = 'Hubo un error al mostrar las revistas, favor vuelva a intentarlo';
+			$res->error = 'No existen coincidencias';
 		}
 		return $res;
 	}

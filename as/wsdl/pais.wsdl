@@ -17,15 +17,11 @@
     
       <xsd:complexType name="buscarpaisassalidas">
       	<xsd:sequence>
-      		<xsd:element name="paises" type="tns:paises" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		<xsd:element name="paises" type="xsd:string" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       	</xsd:sequence>
       	<xsd:attribute name="error" type="xsd:string"></xsd:attribute>
       </xsd:complexType>
     
-      <xsd:complexType name="paises">
-      	<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
-      	<xsd:attribute name="pais" type="xsd:string"></xsd:attribute>
-      </xsd:complexType>
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="buscarpaisasRequest">
@@ -60,7 +56,7 @@
   </wsdl:binding>
   <wsdl:service name="pais">
     <wsdl:port binding="tns:paisSOAP" name="paisSOAP">
-      <soap:address location="http://127.0.0.1:24/pais/server.php"/>
+      <soap:address location="http://127.0.0.1:18/pais/server.php"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

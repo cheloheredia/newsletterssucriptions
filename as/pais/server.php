@@ -33,15 +33,14 @@ class pais {
 	*/
 	public function buscarpaisas($input) {
 		$res = new buscarpaisassalidas();
-		$resdbs = $this->clientdbs->buscarpaisautosuggest(array('pais'=> $input->pais));
+		$resdbs = $this->clientdbs->buscarpais(array('pais'=> $input->pais));
 		if ($resdbs->error == 0) {
 			$res->error = 'OK';
-			for ($i = 0; $i < sizeof($resdbs->matriz); $i++) { 
-				$res->paises[$i]->id = $resdbs->matriz[$i]->columnas[0];
-				$res->paises[$i]->pais = $resdbs->matriz[$i]->columnas[1];
+			for ($i = 0; $i < sizeof($resdbs->matriz); $i++) {
+				$res->paises[$i] = $resdbs->matriz[$i]->columnas[1];
 			}
 		} else {
-			$res->error = 'Hubo un error al mostrar los paises, favor vuelva a intentarlo';
+			$res->error = 'No existen coincidencias';
 		}
 		return $res;
 	}

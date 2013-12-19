@@ -15,7 +15,7 @@ class buscarpaisasentradas {
 class buscarpaisassalidas {
 
     /**
-     * @var array of paises
+     * @var array of string
      */
     public $paises;
 
@@ -26,26 +26,11 @@ class buscarpaisassalidas {
 
 }
 
-class paises {
-
-    /**
-     * @var string
-     */
-    public $id;
-
-    /**
-     * @var string
-     */
-    public $pais;
-
-}
-
 /**
  * @var array
  */
 $classMap = array(
 	'buscarpaisasentradas' => 'buscarpaisasentradas',
-	'buscarpaisassalidas' => 'buscarpaisassalidas',
-    'paises' => 'paises'
+	'buscarpaisassalidas' => 'buscarpaisassalidas'
 );
 

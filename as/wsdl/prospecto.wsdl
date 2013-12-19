@@ -57,7 +57,7 @@
   </wsdl:binding>
   <wsdl:service name="prospecto">
     <wsdl:port binding="tns:prospectoSOAP" name="prospectoSOAP">
-      <soap:address location="http://127.0.0.1:24/prospecto/server.php"/>
+      <soap:address location="http://127.0.0.1:18/prospecto/server.php"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

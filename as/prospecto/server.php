@@ -37,6 +37,7 @@ class prospecto {
 	*/
 	public function registrarparaportadas($input) {
 		$res = new registrarparaportadasentradas();
+		$fecha = date("Y-m-d H:i:s");
 		$resdbs = $this->clientdbs->buscarpais(array('pais'=> $input->pais));
 		if ($resdbs->error == 0) {
 			$idpais = $resdbs->matriz[0]->columnas[0];
@@ -55,7 +56,8 @@ class prospecto {
 						                                               'nombre'=> $input->nombre,
 						                                               'apellido'=> $input->apellido,
 						                                               'email'=> $input->email,
-						                                               'cuidad'=> $idciudad));
+						                                               'cuidad'=> $idciudad,
+						                                               'fecha' => $fecha));
 						if ($resdbs->res == 0) {
 							$resdbs = $this->clientdbs->buscarprospecto(array(
 							                                            'nombre'=> $input->nombre,
@@ -80,7 +82,8 @@ class prospecto {
 							$resdbs = $this->clientdbs->insertarsuscripcion(array(
 							                                                'revista'=> $idrevista,
 							                                                'prospecto'=> $idprospecto,
-							                                                'tipo'=> $idtsuscripcion));
+							                                                'tipo'=> $idtsuscripcion,
+							                                                'fecha' => $fecha));
 							if ($resdbs->res == 0) {
 								$res->error = 'OK';
 							} else {
